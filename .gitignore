@@ -1,2 +1,2 @@
 # Ignore all uploaded files.
-/analyzer/data/*.txt
+/data/*.txt
