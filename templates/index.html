@@ -1,6 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
 <title>Whatsapp Analyzer</title>
+<link rel="stylesheet" type="text/css" href="./static/css/styles.css">
+<link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="./static/css/keen-dashboards.css" />
 <script type = "text/javascript">	
   function showLoader() {
   	document.getElementById("loader").style.display = "block";
@@ -19,10 +23,22 @@
 </style>
 </head>
 <body>
-<h1>Upload new File</h1>
+<h2>How to export your whatsapp chat histroy:</h2>
+<p>Go to WhatsApp > Menu Button > Settings > Chats and calls.<br>
+Tap Back up chats or Chat backup > Back Up.<br>
+To export a copy of the history of an individual chat or group, use the Email chat feature:<br>
+<br>
+Tap and hold on the conversation or group.<br>
+Select Email chat.<br>
+Choose without Media.<br>
+An email will be composed with your chat history attached as a .txt document.<br>
+Now send it to yourself or save it in drafts. Then download the .txt file here and upload it below.</p>
+<br>
+<h4>Upload file here</h4>
 <form  action="" method=post enctype=multipart/form-data>
   <p><input type=file name=file>
      <input type=submit value=Upload onClick="showLoader()"></p>
   <img id="loader" src="./static/images/712.gif"/>
 </form>
 </body>
+</html>
