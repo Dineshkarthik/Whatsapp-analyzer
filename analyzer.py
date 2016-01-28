@@ -27,10 +27,9 @@ def index():
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
-            uniquename= "ChatHistory"+datetime.now().strftime("%Y%m%d%H%M%s")+".txt"
+            filename= "ChatHistory"+datetime.now().strftime("%Y%m%d%H%M%s")+".txt"
             filename = secure_filename(file.filename)
-            # filename = secure_filename(file.'ChatHistory'+datetime.now().strftime("%Y%m%d%H%M%s")+'.txt')
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], uniquename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             messages = pd.DataFrame(columns=['date', 'time', 'sender', 'message','weekday','hour_of_day'])
 
             #Using regex to identify date,time,sender & message and loading to dataframe
@@ -66,10 +65,10 @@ def index():
             freq = p.value_counts()
             #how many max words do we want to give back
             freq = freq.ix[0:25]
-            
+
             response = {}
             response['word_cloud']=freq.to_dict()
-            response['message_count'] = messages['sender'].value_counts().to_dict()
+            response['message_count'] = messages['sender'].value_counts().head(10).to_dict()
             response['the_talker'] = messages['sender'].value_counts().idxmax()
             response['the_silent_killer'] = messages['sender'].value_counts().idxmin()
             media=messages[(messages.message == '<Media omitted>')]
@@ -77,7 +76,6 @@ def index():
             response['media_share_freak'] = media['sender'].value_counts().idxmax()
             response['date_chart'] = messages['date'].value_counts().to_dict()
             response['most_active_date'] = messages['date'].value_counts().idxmax()
-            print 
             response['active_day_of_week'] = week_day(messages['weekday'].value_counts().idxmax())
             response['active_hour_of_day'] = hour(messages['hour_of_day'].value_counts().idxmax())
             response['avg_no_of_msgs_per_day'] = messages['date'].count()/messages['date'].nunique()
