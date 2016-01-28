@@ -1,16 +1,205 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-    function test_func(data) {
-        console.log(data);
-    }
-    test_func({{ data|safe }})
+  <title>WhatsApp Analyzer</title>
+  <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="./static/css/keen-dashboards.css" />
+  <script type="text/javascript" src="./static/lib/js/jquery.min.js"></script>
+  <script type="text/javascript" src="./static/lib/js/d3.min.js"></script>
+  <script type="text/javascript" src="./static/lib/js/d3.tip.js"></script>
+  <script type="text/javascript" src="./static/lib/js/d3.layout.cloud.js"></script>
+  <script type="text/javascript" src="./static/js/stats.js"></script>
+  <script type="text/javascript">
+    readFile({{ data|safe }});
 </script>
+  <style>
+
+    body {
+      font-size: 15px;
+      font-family: Myriad Pro;
+      font-style: none;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #A0A0A0;
+        shape-rendering: crispEdges;
+    }
+
+    .line {
+        fill: none;
+        stroke-width: 1px;
+    }
+
+    .line {
+        stroke: #4682B8;
+    }
+
+    .grid {
+        stroke: #E6E6E6;
+    }
+
+    .y.axis path {
+      display: none;
+    }
+
+    .axis text {
+        font-size: 6px;
+    }
+
+    .label text, .chart-text {
+        font-size: 8px;
+    }
+
+    .legend text, .axis {
+        font-size: 14px;    
+    }
+
+    .front-bar {
+        fill: #00CDF2;
+    }
+
+    .back-bar {
+        fill: #EBEBEB;
+    }
+
+  </style>
 </head>
-<body>
-	<p>{{data}}</p>
+
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-collapse collapse">
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="chart-wrapper">
+        <div class="chart-title">
+          Line Chart
+        </div>
+        <div class="chart-stage">
+          <div id="group-activity"></div>
+        </div>
+        <div class="chart-notes">
+          This is a sample text region to describe this chart.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Pageviews by browser (past 24 hours)
+              </div>
+              <div class="chart-stage">
+                <div id="tag-cloud"></div>
+              </div>
+              <div class="chart-notes">
+                This is a sample text region to describe this chart.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Impressions by advertiser
+              </div>
+              <div class="chart-stage">
+                <div id="message-share"></div>
+              </div>
+              <div class="chart-notes">
+                Notes go down here
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                Impressions by advertiser
+              </div>
+              <div class="chart-stage">
+                <div id="media-share"></div>
+              </div>
+              <div class="chart-notes">
+                Notes go down here
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Impressions by device
+          </div>
+          <div class="chart-stage">
+            <div id="group-spotlight">
+              <h3>SPOTLIGHT</h3>
+              <ul class="group-spotlight">
+                  <li class="activeDate">
+                    <div class="graph-sec">
+                      <span class="stat-title">Most Active Date</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="activeDay">
+                    <div class="graph-sec">
+                      <span class="stat-title">Most Active Day</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="activeHour">
+                    <div class="graph-sec">
+                      <span class="stat-title">Active Hour of a Day</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="messageRate">
+                    <div class="graph-sec">
+                      <span class="stat-title">Average number of Messages per Day</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="mediaFreek">
+                    <div class="graph-sec">
+                      <span class="stat-title">The Media Freek</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="silentKiller">
+                    <div class="graph-sec">
+                      <span class="stat-title">The Silent Killer</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+                  <li class="theTalker">
+                    <div class="graph-sec">
+                      <span class="stat-title">The Talker</span>
+                      <span class="stat-value"></span>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes go down here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-<script src="./static/lib/js/jquery.min.js"></script>
-<script src="./static/lib/js/bootstrap.min.js"></script>
-<script src="./static/lib/js/d3.js"></script>
 </html>
