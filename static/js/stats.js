@@ -334,6 +334,7 @@ function mediaShare(data, div_id) {
 }
 
 function messageShare (data, div_id) {
+  var divWidth = 400;
   var margin = {
         top: divHeight*0.05,
         right: divWidth*0.05,
