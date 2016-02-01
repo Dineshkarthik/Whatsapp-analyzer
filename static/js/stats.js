@@ -5,7 +5,6 @@ var divHeight = 200;
 
 function readFile (masterData) {
   d3.json(masterData, function(error, data) {
-    console.log(masterData);
     var spotLightObj = {};
     spotLightObj.activeDate = masterData.most_active_date;
     spotLightObj.activeDay = masterData.active_day_of_week;
