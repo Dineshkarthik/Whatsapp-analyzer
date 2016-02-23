@@ -1,6 +1,6 @@
 # WhatsApp-Analyzer
 
-WhatsApp-Analyzer is a simple analytics and vizulisation Python app, dashboard powered by Twitter-bootstrap and [D3.js][D3.js].
+WhatsApp-Analyzer is a simple analytics and visualization Python app, dashboard powered by Twitter-bootstrap and D3.js.
 
 ##### All you need to do:
   - Export your WhatsApp conversation to text file
