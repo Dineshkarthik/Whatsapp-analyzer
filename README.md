@@ -11,7 +11,6 @@ WhatsApp-Analyzer is a simple analytics and visualization Python app, dashboard 
 
 > There’s no way that it will work for everyone because I’ve found that depending on your OS and version of Whatsapp, the format of text file lines varies wildly. I’m sorry if it doesn’t work for you.
 
->Haven't handled huge file upload, size above 2 MB. Which will give you file too large error.
 
 ### Tech
 
@@ -33,6 +32,7 @@ You need Python, its dependency packages, flask and pandas installed globally:
 ```sh
 $ git clone https://github.com/Dineshkarthik/Whatsapp-analyzer.git WhatsApp-Analyzer
 $ cd WhatsApp-Analyzer
+$ pip install -r requirements.txt
 $ python analyzer.py
 ```
 
@@ -53,4 +53,4 @@ MIT
    [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
    [jQuery]: <http://jquery.com>
    [WhatsApp-Analyzer]: <https://github.com/Dineshkarthik/Whatsapp-analyzer>
-   [Demo]: <http://ec2-52-76-15-154.ap-southeast-1.compute.amazonaws.com/>
+   [Demo]: <https://999e455c.ngrok.io>
