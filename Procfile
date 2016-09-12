@@ -1,1 +1,1 @@
-web: python analyzer.py $PORT
+web: python analyzer.py --port $PORT
