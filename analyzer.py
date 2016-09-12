@@ -101,5 +101,4 @@ if __name__ == "__main__":
     parser.add_option("-p", "--port", dest="port",
                       help="Port on which the app will run", default=5000)
     (options, args) = parser.parse_args()
-    print options.port
     app.run(host='0.0.0.0', debug=True, port=int(options.port))
