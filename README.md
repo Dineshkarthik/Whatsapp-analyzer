@@ -53,4 +53,4 @@ MIT
    [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
    [jQuery]: <http://jquery.com>
    [WhatsApp-Analyzer]: <https://github.com/Dineshkarthik/Whatsapp-analyzer>
-   [Demo]: <https://999e455c.ngrok.io>
+   [Demo]: <http://whatsapp-analyzer.herokuapp.com/>
