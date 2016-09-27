@@ -1,7 +1,38 @@
 var divWidth = 500;
 var divHeight = 200;
 
+var results_ = [];
 
+function get_dropdown_values() {
+  $.ajax({
+    type: "GET",
+    url: '/options',
+    success: function(results) {
+      results_ = results;
+    }
+  });
+}
+get_dropdown_values();
+
+function load_options(results_) {
+  var dropdown_classes = Object.keys(results_);
+  for (var i = 0; i < dropdown_classes.length; i++) {
+    var selection = dropdown_classes[i];
+    var options = results_[selection];
+    var name = selection.split('-')[1];
+    var html = '';
+    for (j = 0; j < options.length; j++) {
+      html = html + ['<div class="radio item filter-item" >', '<label><input type="radio" name="' + name + '"', 'value="' + options[j] + '" style="margin-left:-15px;">',
+        options[j], '</label></div>'
+      ].join('');
+    }
+    $(selection + ' .options').html(html);
+  }
+}
+
+$(document).ajaxComplete(function(event,xhr,settings) {
+ load_options(results_);
+});
 
 function readFile (masterData) {
   d3.json(masterData, function(error, data) {
@@ -123,7 +154,7 @@ function groupActivity(data, div_id) {
   var xAxis = d3.svg.axis()
       .scale(xScale)
       .orient("bottom")
-      .tickFormat(d3.time.format("%b %d"))
+      .tickFormat(d3.time.format("%b %Y"))
       .tickSize(0)
       .outerTickSize(5)
 
