@@ -40,7 +40,7 @@ def option():
 def index():
     """Function that does all the calculations."""
     if request.method == 'POST':
-        attr = request.form['Option']
+        attr = request.form['d_down']
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = "ChatHistory" + datetime.now().strftime(
@@ -324,4 +324,4 @@ if __name__ == "__main__":
         help="Port on which the app will run",
         default=5000)
     (options, args) = parser.parse_args()
-    app.run(host='0.0.0.0', debug=False, port=int(options.port))
+    app.run(host='0.0.0.0', debug=True, port=int(options.port))
