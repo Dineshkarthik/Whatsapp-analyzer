@@ -1,4 +1,4 @@
-numpy == 1.11.0
-pandas == 0.18.1
-Werkzeug == 0.11.8
-Flask == 0.10.1
+Flask==0.11.1
+pandas==0.18.1
+python_dateutil==2.5.3
+numpy==1.11.2

@@ -1,2 +1,6 @@
 # Ignore all uploaded files.
 /data/*.txt
+
+# IPython Notebook checkpoints
+.ipynb_checkpoints
+*.ipynb

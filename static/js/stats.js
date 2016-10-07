@@ -1,8 +1,6 @@
 var divWidth = 500;
 var divHeight = 200;
 
-
-
 function readFile (masterData) {
   d3.json(masterData, function(error, data) {
     var spotLightObj = {};
@@ -123,7 +121,7 @@ function groupActivity(data, div_id) {
   var xAxis = d3.svg.axis()
       .scale(xScale)
       .orient("bottom")
-      .tickFormat(d3.time.format("%b %d"))
+      .tickFormat(d3.time.format("%b %Y"))
       .tickSize(0)
       .outerTickSize(5)
 
