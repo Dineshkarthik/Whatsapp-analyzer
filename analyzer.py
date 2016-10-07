@@ -5,7 +5,7 @@ import re
 import sys
 import numpy as np
 import pandas as pd
-from flask import Flask, request, redirect, url_for, render_template, json, session, jsonify
+from flask import Flask, request, redirect, url_for, render_template, json, session
 from datetime import datetime
 from dateutil.parser import parse
 from optparse import OptionParser
@@ -26,14 +26,6 @@ def allowed_file(filename):
     """Function to chcek the updated file format."""
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-
-@app.route("/options", methods=['GET', 'POST'])
-def option():
-    """Function to generate options for dateformat filter."""
-    format_ = {}
-    format_[".filter-Option"] = ["Date First", "Month First"]
-    return jsonify(format_)
 
 
 @app.route("/", methods=['GET', 'POST'])
