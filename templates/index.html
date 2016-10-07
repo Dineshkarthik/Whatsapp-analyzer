@@ -7,13 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
     <script type="text/javascript" src="./static/lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="./static/lib/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./static/js/stats.js"></script>
-    <script type = "text/javascript"> 
-      function showLoader() {
-        document.getElementById("loader").style.display = "block";
-        document.getElementsByTagName("body")[0].setAttribute("class", "lightBox");
-      }
-    </script>
+    <script type="text/javascript" src="./static/lib/js/jquery.validate.min.js"></script>
     <style>
       #loader {
         display: none;
@@ -69,17 +63,17 @@
           <li>Choose <B>Without Media.</B></li>
           <li>An email will be composed with your chat history attached as a .txt document.</li>
           <li>Now send it to yourself or save it in drafts. Then download the .txt file and upload it below.</li>
+          <li>Before Uploading open the file and check the date format, whether Day comes first or the Month and Select an option below. </li>
         </ul>
         <h4>Upload file here:</h4>
-        <form  action="" method=post enctype=multipart/form-data>
-          <div class="filter-col dropdown control js-monthDropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose your date format<span class="caret"></span></a>
-            <ul class="dropdown-menu dropdown-menu-form filter-Option scroll" role="menu">
-              <li class="options"></li>
-            </ul>
-          </div>
+        <form  id="upload-form" action="" method=post enctype=multipart/form-data>
+          <select name="d_down" id="d_down">  
+            <option value="">Select Date Format.</option>
+            <option value="Date First">Date First</option>
+            <option value="Month First">Month First</option>
+          </select>
           <input type=file name=file>
-          <input type=submit value=Upload onClick="showLoader()">
+          <input type=submit value=Upload>
           <img id="loader" src="./static/images/712.gif"/>
         </form>
         <div id="footer">
@@ -89,3 +83,25 @@
     </div>
   </body>
 </html>
+<script type="text/javascript">
+  $(function() {
+  // Validation on the #contact-form element
+  $("#upload-form").validate({
+    rules: {
+      d_down: "required",
+      file: "required"
+    },
+    // Specify the validation error messages
+    messages: {
+      d_down: "Please select your date format",
+      file: "Please Select a file to upload"
+    }
+  });
+});
+$('form').submit( function(e) {
+  if($(this).valid()) {
+    document.getElementById("loader").style.display = "block";
+    document.getElementsByTagName("body")[0].setAttribute("class", "lightBox");
+  }
+});
+</script>
