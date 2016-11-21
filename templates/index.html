@@ -8,51 +8,14 @@
     <script type="text/javascript" src="./static/lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="./static/lib/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./static/lib/js/jquery.validate.min.js"></script>
-    <style>
-      #loader {
-        display: none;
-        left: 50%;
-        position: relative;
-      }
-      .lightBox {
-        background-color: rgba(255, 255, 255, 0);
-      }
-      /* Set the fixed height of the footer here */
-      #footer {
-        height: 55px;
-        background-color: #f5f5f5;
-        margin-top:50px;
-        padding-top:20px;
-        padding-bottom:20px;
-      }
-      .navbar{
-        margin-bottom: 2px;
-      }
-      .title {
-        pointer-events: none;
-        position: absolute;
-        width: 100%;
-        margin-bottom: 10;
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 75px;
-        text-align: center;
-        margin: 10;
-        text-transform: uppercase;
-        text-decoration: none;
-      }
-      #footer p{
-        margin-left: 10px;
-      }
-    </style>
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navbar-header">
+        <span class="title">WhatsApp Analyzer</span>
+      </div>
+    </nav>
     <div class="container-fluid">
-      <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="navbar-header">
-          <span class="title">WhatsApp Analyzer</span>
-        </div>
-      </nav>
       <div id="wrap">
         <h2>How to export your Conversation:</h2>
         To export a copy of the history of an individual chat or group, use the Email chat feature:
@@ -76,16 +39,16 @@
           <input type=submit value=Upload>
           <img id="loader" src="./static/images/712.gif"/>
         </form>
-        <div id="footer">
-          <p>Your data is not stored in any database, files you upload will be deleted periodically. <a href="https://github.com/Dineshkarthik/Whatsapp-analyzer"><i class="fa fa-github"></i></a> View on GitHub</p>
-        </div>
       </div>
+    </div>
+    <div id="footer">
+      <p>Your data is not stored in any database, files you upload will be deleted periodically. <a href="https://github.com/Dineshkarthik/Whatsapp-analyzer"><i class="fa fa-github"></i></a> View on GitHub</p>
     </div>
   </body>
 </html>
 <script type="text/javascript">
   $(function() {
-  // Validation on the #contact-form element
+  // Validation on the #upload-form element
   $("#upload-form").validate({
     rules: {
       d_down: "required",
@@ -100,8 +63,8 @@
 });
 $('form').submit( function(e) {
   if($(this).valid()) {
-    document.getElementById("loader").style.display = "block";
-    document.getElementsByTagName("body")[0].setAttribute("class", "lightBox");
+    $("html").fadeOut();
+    $("#loader").css("display", "block");
   }
 });
 </script>

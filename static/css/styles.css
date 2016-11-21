@@ -1,0 +1,36 @@
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lightBox {
+  background-color: rgba(255, 255, 255, 0);
+}
+#footer {
+  height: 55px;
+  background-color: #f5f5f5;
+  margin-top:50px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.navbar{
+  margin-bottom: 2px;
+}
+.title {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  margin-bottom: 10;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 75px;
+  text-align: center;
+  margin: 10;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+#footer p{
+  margin-left: 10px;
+}
