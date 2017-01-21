@@ -281,8 +281,8 @@ def week_day(x):
 
 def hour(x):
     """Function to return hour of day."""
-    return {'0': '12 AM - 1 AM',
-            '1': '01 AM - 2 AM',
+    return {'00': '12 AM - 1 AM',
+            '01': '01 AM - 2 AM',
             '02': '2 AM - 3 AM',
             '03': '3 AM - 4 AM',
             '04': '4 AM - 5 AM',
