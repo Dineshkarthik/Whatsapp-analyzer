@@ -37,9 +37,9 @@
           </select>
           <input type=file name=file>
           <input type=submit value=Upload>
-          <img id="loader" src="./static/images/712.gif"/>
         </form>
       </div>
+    <img id="loader" src="./static/images/712.gif"/>
     </div>
     <div id="footer">
       <p>Your data is not stored in any database, files you upload will be deleted periodically. <a href="https://github.com/Dineshkarthik/Whatsapp-analyzer"><i class="fa fa-github"></i></a> View on GitHub</p>
@@ -63,7 +63,7 @@
 });
 $('form').submit( function(e) {
   if($(this).valid()) {
-    $("html").fadeOut();
+    $("#wrap,#footer").fadeTo("slow", 0.15);
     $("#loader").css("display", "block");
   }
 });
