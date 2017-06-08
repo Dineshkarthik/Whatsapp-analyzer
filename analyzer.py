@@ -82,7 +82,6 @@ def index():
                                     info[0], info[1], date_time.weekday(),
                                     date_time.time().strftime("%H")
                                 ]
-            messages.to_csv("test.csv", index=False)
             # Calculating stats from dataframe
             word_string = messages['message']
             words = []
