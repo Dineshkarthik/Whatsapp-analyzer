@@ -27,7 +27,7 @@ And of course WhatsApp-Analyzer itself is open source with a [public repository]
 ###### Live [Demo] available here.
 ### Installation
 
-You need Python, its dependency packages, flask and pandas installed globally:
+You need Python 2.*, its dependency packages, flask and pandas installed globally:
 
 ```sh
 $ git clone https://github.com/Dineshkarthik/Whatsapp-analyzer.git WhatsApp-Analyzer
