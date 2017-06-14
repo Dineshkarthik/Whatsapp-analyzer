@@ -4,3 +4,6 @@
 # IPython Notebook checkpoints
 .ipynb_checkpoints
 *.ipynb
+
+# Ignore session files.
+/flask_session/

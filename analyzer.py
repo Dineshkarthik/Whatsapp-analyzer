@@ -6,6 +6,7 @@ import sys
 import numpy as np
 import pandas as pd
 from flask import Flask, request, redirect, url_for, render_template, json, session
+from flask_session import Session
 from datetime import datetime
 from dateutil.parser import parse
 from optparse import OptionParser
@@ -16,8 +17,11 @@ UPLOAD_FOLDER = 'data/'
 ALLOWED_EXTENSIONS = set(['txt'])
 
 app = Flask(__name__)
+SESSION_TYPE = 'filesystem'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = hashlib.sha1(os.urandom(128)).hexdigest()
+app.config.from_object(__name__)
+Session(app)
 
 bool_ = {"Date First": True, "Month First": False}
 text_file = open("ignore_words.txt", "r")
@@ -125,15 +129,19 @@ def index():
                                                   .value_counts().idxmax())
             response['avg_no_of_msgs_per_day'] = messages['date'].count(
             ) / messages['date'].nunique()
-            session["data"] = json.dumps(response)
-            return redirect(url_for('stats'))
+            sid = hashlib.sha1(os.urandom(128)).hexdigest()
+            session[sid] = json.dumps(response)
+            response = redirect(url_for("stats"))
+            response.set_cookie('session_id', sid)
+            return response
     return render_template('index.html')
 
 
 @app.route("/stats", methods=['GET'])
 def stats():
     """Function to render stats page."""
-    return render_template('stats.html', data=session["data"])
+    session_id = request.cookies.get('session_id')
+    return render_template('stats.html', data=session.get(session_id))
 
 
 def week_day(x):
