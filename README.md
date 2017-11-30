@@ -36,6 +36,12 @@ $ pip install -r requirements.txt
 $ python analyzer.py
 ```
 
+Docker image is also available:
+
+    docker pull dineshkarthik/whatsapp-analyzer
+    docker run -p 8000:5000  dineshkarthik/whatsapp-analyzer
+
+Service will be running on port 8000 - `http://localhost:8000/`
 
 License
 ----
