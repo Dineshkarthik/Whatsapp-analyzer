@@ -7,3 +7,34 @@
 
 # Ignore session files.
 /flask_session/
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+logs/
+parts/
+sdist/
+share/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.DS_Store
+*.cfg
+
+# virtualenv
+.venv
+venv/
+ENV/
+bin/
+include/
+pip-selfcheck.json
