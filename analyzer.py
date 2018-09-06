@@ -5,7 +5,8 @@ import re
 import sys
 import numpy as np
 import pandas as pd
-from flask import Flask, request, redirect, url_for, render_template, json, session
+from flask import (Flask, request, redirect, url_for, render_template, json,
+                   session)
 from flask_session import Session
 from datetime import datetime
 from dateutil.parser import parse
@@ -43,6 +44,17 @@ def is_date(string):
         return False
 
 
+def get_dict(date, time, sender, message, weekday, hour_of_day):
+    """Return dictionary to build DF."""
+    return dict(
+        date=date,
+        time=time,
+        sender=sender,
+        message=message,
+        weekday=weekday,
+        hour_of_day=hour_of_day)
+
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     """Function that does all the calculations."""
@@ -53,39 +65,39 @@ def index():
             filename = "ChatHistory" + datetime.now().strftime(
                 "%Y%m%d%H%M%s") + ".txt"
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            messages = pd.DataFrame(columns=[
-                'date', 'time', 'sender', 'message', 'weekday', 'hour_of_day'
-            ])
+            _list = []
 
             with open('data/' + filename) as fp:
                 for line in fp:
                     if not line.isspace():
                         record = line.strip().split(" - ", 1)
                         if (len(record) == 1):
-                            messages.loc[len(messages) + 1] = [
-                                np.nan, np.nan, np.nan, line, np.nan, np.nan
-                            ]
+                            _list.append(
+                                get_dict(np.nan, np.nan, np.nan, line, np.nan,
+                                         np.nan))
                         elif not (is_date(record[0])):
-                            messages.loc[len(messages) + 1] = [
-                                np.nan, np.nan, np.nan, line, np.nan, np.nan
-                            ]
+                            _list.append(
+                                get_dict(np.nan, np.nan, np.nan, line, np.nan,
+                                         np.nan))
                         else:
                             date_time = parse(record[0], dayfirst=bool_[attr])
                             info = record[1].split(":", 1)
                             if len(info) == 1:
-                                messages.loc[len(messages) + 1] = [
-                                    date_time.date().strftime("%d/%m/%Y"),
-                                    date_time.time().strftime("%I:%M %p"),
-                                    np.nan, info[0], date_time.weekday(),
-                                    date_time.time().strftime("%H")
-                                ]
+                                _list.append(
+                                    get_dict(
+                                        date_time.date().strftime("%d/%m/%Y"),
+                                        date_time.time().strftime("%I:%M %p"),
+                                        np.nan, info[0], date_time.weekday(),
+                                        date_time.time().strftime("%H")))
                             else:
-                                messages.loc[len(messages) + 1] = [
-                                    date_time.date().strftime("%d/%m/%Y"),
-                                    date_time.time().strftime("%I:%M %p"),
-                                    info[0], info[1], date_time.weekday(),
-                                    date_time.time().strftime("%H")
-                                ]
+                                _list.append(
+                                    get_dict(
+                                        date_time.date().strftime("%d/%m/%Y"),
+                                        date_time.time().strftime("%I:%M %p"),
+                                        info[0], info[1], date_time.weekday(),
+                                        date_time.time().strftime("%H")))
+            messages = pd.DataFrame(_list)
+
             # Calculating stats from dataframe
             word_string = messages['message']
             words = []
@@ -109,26 +121,26 @@ def index():
             response['message_count'] = messages['sender'].value_counts().head(
                 10).to_dict()
             response['the_talker'] = messages['sender'].value_counts().idxmax()
-            response['the_silent_killer'] = messages['sender'].value_counts(
-            ).idxmin()
+            response['the_silent_killer'] = messages[
+                'sender'].value_counts().idxmin()
             media = messages[(messages.message == ' <Media omitted>')]
             if len(media):
-                response['media_count'] = media['sender'].value_counts(
-                ).to_dict()
-                response['media_share_freak'] = media['sender'].value_counts(
-                ).idxmax()
+                response['media_count'] = media[
+                    'sender'].value_counts().to_dict()
+                response['media_share_freak'] = media[
+                    'sender'].value_counts().idxmax()
             else:
                 response['media_count'] = {}
                 response['media_share_freak'] = ""
             response['date_chart'] = messages['date'].value_counts().to_dict()
-            response['most_active_date'] = messages['date'].value_counts(
-            ).idxmax()
+            response['most_active_date'] = messages[
+                'date'].value_counts().idxmax()
             response['active_day_of_week'] = week_day(messages['weekday']
                                                       .value_counts().idxmax())
             response['active_hour_of_day'] = hour(messages['hour_of_day']
                                                   .value_counts().idxmax())
-            response['avg_no_of_msgs_per_day'] = messages['date'].count(
-            ) / messages['date'].nunique()
+            response['avg_no_of_msgs_per_day'] = messages[
+                'date'].count() / messages['date'].nunique()
             sid = hashlib.sha1(os.urandom(128)).hexdigest()
             session[sid] = json.dumps(response)
             response = redirect(url_for("stats"))
