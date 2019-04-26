@@ -1,12 +1,13 @@
-FROM python:2-onbuild
+FROM python:3.6.8-slim
 
 LABEL maintainer="Dineshkarthik Raveendran <dineshkarthik.r@gmail.com>"
 
-# Cloning repo and installing requirements
-RUN git clone https://github.com/Dineshkarthik/Whatsapp-analyzer.git WhatsApp-Analyzer && \
-	cd WhatsApp-Analyzer && \
-	pip install -r requirements.txt
+# App setup
+COPY . /whatsapp-analyser
+WORKDIR /whatsapp-analyser
+RUN pip3 install --upgrade pip
+RUN pip3 install -e .
 
 EXPOSE 5000
 
-CMD ["python", "./analyzer.py"]
+CMD ["wapp-analyzer", "run"]

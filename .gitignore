@@ -30,6 +30,9 @@ wheels/
 *.egg
 .DS_Store
 *.cfg
+.cache/
+.coverage
+*.pyc
 
 # virtualenv
 .venv
