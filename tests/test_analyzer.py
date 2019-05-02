@@ -4,6 +4,7 @@ import mock
 import logging
 import unittest
 
+
 from wapp.analyzer.app import calculate_stats, allowed_file, is_date, week_day
 
 

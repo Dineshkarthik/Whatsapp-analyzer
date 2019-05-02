@@ -1,0 +1,29 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.6.5
+        environment:
+          CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+          CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+          LOG_DIR: ${CIRCLE_ARTIFACTS}/testresults/
+    steps:
+      - checkout
+      - run:
+          name: Get setuptools
+          shell: /bin/bash
+          command: pip install --user --upgrade pip setuptools
+      - run:
+          name: Run test
+          shell: /bin/bash
+          command: |
+            sudo make -e test
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - test
