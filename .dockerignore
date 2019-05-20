@@ -1,0 +1,8 @@
+bin/
+cache/
+etc/
+include/
+lib/
+share/
+flask_sessopn/
+*.egg-info
