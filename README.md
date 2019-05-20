@@ -1,5 +1,7 @@
 # WhatsApp-Analyzer
 
+[![CircleCI](https://circleci.com/gh/Dineshkarthik/Whatsapp-analyzer.svg?style=svg&circle-token=c02cdb0e0021bb805b7810c30601d31fbc4de81d)]
+
 WhatsApp-Analyzer is a simple analytics and visualization Python app, dashboard powered by Twitter-bootstrap and D3.js.
 
 ##### All you need to do:
@@ -27,19 +29,24 @@ And of course WhatsApp-Analyzer itself is open source with a [public repository]
 ###### Live [Demo] available here.
 ### Installation
 
-You need Python 2.*, its dependency packages, flask and pandas installed globally:
+You need Python 3.6 and above, its dependency packages, flask and pandas installed globally:
 
 ```sh
 $ git clone https://github.com/Dineshkarthik/Whatsapp-analyzer.git WhatsApp-Analyzer
 $ cd WhatsApp-Analyzer
-$ pip install -r requirements.txt
-$ python analyzer.py
+$ make install
+$ make run
 ```
 
 Docker image is also available:
 
     docker pull dineshkarthik/whatsapp-analyzer
     docker run -p 8000:5000  dineshkarthik/whatsapp-analyzer
+
+Support for python2 is depricated but old docker image is available
+
+    docker pull dineshkarthik/whatsapp-analyzer:python2
+    docker run -p 8000:5000  dineshkarthik/whatsapp-analyzer:python2
 
 Service will be running on port 8000 - `http://localhost:8000/`
 
