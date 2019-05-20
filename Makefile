@@ -4,7 +4,7 @@ DOCKER_REPOSITORY :=  ${DOCKER_REGISTRY}/whatsapp-analyzer
 TEST_ARTIFACTS ?= /tmp/coverage
 
 
-.PHONY: requirements deps install build push docker_hub_login
+.PHONY: requirements deps install build push docker_hub_login run
 
 requirements:
 	pip install --upgrade pip setuptools
@@ -15,6 +15,9 @@ install: requirements
 
 deps: install
 	pip install -r dev-requirements.txt
+
+run:
+	wapp-analyzer run
 
 build:
 	docker build -t ${DOCKER_REPOSITORY}:${TAG} .
