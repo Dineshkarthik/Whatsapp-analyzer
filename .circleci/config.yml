@@ -13,12 +13,13 @@ jobs:
       - run:
           name: Get setuptools
           shell: /bin/bash
-          command: pip install --user --upgrade pip setuptools
+          command: sudo pip install --upgrade pip setuptools codecov
       - run:
           name: Run test
           shell: /bin/bash
           command: |
             sudo make -e test
+            codecov
       - store_artifacts:
           path: /tmp/circleci-artifacts
 
@@ -34,12 +35,13 @@ jobs:
       - run:
           name: Get setuptools
           shell: /bin/bash
-          command: pip install --user --upgrade pip setuptools
+          command: sudo pip install --upgrade pip setuptools codecov
       - run:
           name: Run test
           shell: /bin/bash
           command: |
             sudo make -e test
+            codecov
       - store_artifacts:
           path: /tmp/circleci-artifacts
 
