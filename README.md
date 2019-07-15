@@ -1,6 +1,12 @@
-# WhatsApp-Analyzer
+<h1 align="center">WhatsApp-Analyzer</h1>
 
-![CircleCI](https://circleci.com/gh/Dineshkarthik/Whatsapp-analyzer.svg?style=svg&circle-token=c02cdb0e0021bb805b7810c30601d31fbc4de81d) [![codecov](https://codecov.io/gh/Dineshkarthik/Whatsapp-analyzer/branch/master/graph/badge.svg)](https://codecov.io/gh/Dineshkarthik/Whatsapp-analyzer)
+
+<p align="center">
+<a href="https://circleci.com/gh/Dineshkarthik/Whatsapp-analyzer/tree/master"><img alt="Build Status" src="https://circleci.com/gh/Dineshkarthik/Whatsapp-analyzer.svg?style=svg&circle-token=c02cdb0e0021bb805b7810c30601d31fbc4de81d"></a>
+<a href="https://codecov.io/gh/Dineshkarthik/Whatsapp-analyzer"><img alt="Coverage Status" src="https://codecov.io/gh/Dineshkarthik/Whatsapp-analyzer/branch/master/graph/badge.svg"></a>
+<a href="https://github.com/Dineshkarthik/Whatsapp-analyzer/blob/master/LICENSE"><img alt="License: MIT" src="https://black.readthedocs.io/en/stable/_static/license.svg"></a>
+<a href="https://github.com/python/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+</p>
 
 WhatsApp-Analyzer is a simple analytics and visualization Python app, dashboard powered by Twitter-bootstrap and D3.js.
 
