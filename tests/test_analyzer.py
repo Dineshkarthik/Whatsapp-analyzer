@@ -47,7 +47,7 @@ class WhatsappAnalyzerTestCase(unittest.TestCase):
                 "saitama": 53,
             },
             "the_talker": "asta",
-            "the_silent_killer": "saitama",
+            "the_silent_spectator": "saitama",
             "media_count": {
                 "asta": 9,
                 "goku": 8,

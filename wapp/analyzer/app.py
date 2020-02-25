@@ -176,7 +176,7 @@ def calculate_stats(file_name: str, attr: str) -> dict:
         messages["sender"].value_counts().head(10).to_dict()
     )
     stats["the_talker"] = messages["sender"].value_counts().idxmax()
-    stats["the_silent_killer"] = messages["sender"].value_counts().idxmin()
+    stats["the_silent_spectator"] = messages["sender"].value_counts().idxmin()
     media = messages[(messages.message == " <Media omitted>")]
     if len(media):
         stats["media_count"] = media["sender"].value_counts().to_dict()

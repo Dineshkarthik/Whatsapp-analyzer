@@ -9,7 +9,7 @@ function readFile (masterData) {
     spotLightObj.activeHour = masterData.active_hour_of_day;
     spotLightObj.messageRate = masterData.avg_no_of_msgs_per_day;
     spotLightObj.mediaFreek = masterData.media_share_freak;
-    spotLightObj.silentKiller = masterData.the_silent_killer;
+    spotLightObj.silentSpectator = masterData.the_silent_spectator;
     spotLightObj.theTalker = masterData.the_talker;
 
     tagCloud(masterData.word_cloud, 'tag-cloud');
@@ -91,7 +91,7 @@ function spotLight(data) {
     //   break;
     //   case 'avgMsgRate':
     //   break;
-    //   case 'silentKiller':
+    //   case 'silentSpectator':
     //   break;
     //   case 'theTalker':
     //   break; 
