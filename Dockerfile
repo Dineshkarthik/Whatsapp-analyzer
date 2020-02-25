@@ -5,7 +5,8 @@ LABEL maintainer="Dineshkarthik Raveendran <dineshkarthik.r@gmail.com>"
 # App setup
 COPY . /whatsapp-analyser
 WORKDIR /whatsapp-analyser
-RUN make install
+RUN pip3 install --upgrade pip
+RUN pip3 install -e .
 
 EXPOSE 5000
 
