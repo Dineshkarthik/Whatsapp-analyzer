@@ -7,14 +7,14 @@ TEST_ARTIFACTS ?= /tmp/coverage
 .PHONY: requirements deps install build push docker_hub_login run
 
 requirements:
-	pip install --upgrade pip setuptools
-	pip install -r requirements.txt
+	pip3 install --upgrade pip setuptools
+	pip3 install -r requirements.txt
 
 install: requirements
-	pip install -e .
+	pip3 install -e .
 
 deps: install
-	pip install -r dev-requirements.txt
+	pip3 install -r dev-requirements.txt
 
 run:
 	wapp-analyzer run
