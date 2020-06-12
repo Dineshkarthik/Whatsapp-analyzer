@@ -75,7 +75,7 @@ def setup():
         name=package["depname"],
         packages=packages,
         url="https://github.com/dineshkarthik/%(repo)s" % package,
-        version="0.2.0",
+        version="0.2.1",
         zip_safe=False,
         entry_points={
             "console_scripts": [
