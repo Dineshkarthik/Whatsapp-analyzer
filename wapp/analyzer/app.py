@@ -210,12 +210,10 @@ def index():
             )
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
-            sid = hashlib.sha1(os.urandom(128)).hexdigest()
-            session[sid] = json.dumps(
-                calculate_stats("data/" + filename, attr)
-            )
+            session["filename"] = filename
+            session["attr"] = attr
+
             response = redirect(url_for("stats"))
-            response.set_cookie("session_id", sid)
             return response
     return render_template("index.html")
 
@@ -223,8 +221,8 @@ def index():
 @app.route("/stats", methods=["GET"])
 def stats():
     """Function to render stats page."""
-    session_id = request.cookies.get("session_id")
-    return render_template("stats.html", data=session.get(session_id))
+    data = calculate_stats("data/"+session.get("filename"),session.get("attr"))
+    return render_template("stats.html", data=data)
 
 
 def start(port):
