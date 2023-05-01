@@ -24,7 +24,7 @@ package = dict(
 )
 
 install_requires = [line for line in (line.strip() for line in """
-    Flask==1.1.2
+    Flask==2.3.2
     Flask-Session==0.3.2
     numpy==1.19.0
     pandas==1.0.5
